@@ -30,7 +30,7 @@ public class JavaQuestionService implements QuestionService {
             throw new QuestionAlreadyExistsException("Вопрос уже есть в списке");
         }
         questions.put(key, question);
-        return null;
+        return question;
     }
 
     @Override
