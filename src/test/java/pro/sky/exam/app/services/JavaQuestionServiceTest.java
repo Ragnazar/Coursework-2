@@ -16,13 +16,14 @@ import static pro.sky.exam.app.Constants.*;
 
 class JavaQuestionServiceTest {
 
-    private QuestionService questionService = new JavaQuestionService();
+    private final QuestionService questionService = new JavaQuestionService();
 
     @AfterEach
     void cleanUp() {
         Collection<Question> tmp = questionService.getAll();
+        Question q = new Question(QUESTION, ANSWER);
         if (!tmp.isEmpty()) {
-            questionService = new JavaQuestionService();
+            questionService.remove(q);
         }
     }
 
