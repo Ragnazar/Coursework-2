@@ -21,9 +21,9 @@ class JavaQuestionServiceTest {
     @AfterEach
     void cleanUp() {
         Collection<Question> tmp = questionService.getAll();
-        Question q = new Question(QUESTION, ANSWER);
+        Question item = new Question(QUESTION, ANSWER);
         if (!tmp.isEmpty()) {
-            questionService.remove(q);
+            questionService.remove(item);
         }
     }
 
