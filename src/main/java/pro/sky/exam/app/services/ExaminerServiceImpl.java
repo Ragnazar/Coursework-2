@@ -18,7 +18,7 @@ public class ExaminerServiceImpl implements ExaminerService {
     @Override
     public Collection<Question> getQuestions(int amount) {
         Collection<Question> result = new ArrayList<>();
-        if (amount > questionService.getAll().size()) {
+        if (amount > questionService.getAll().size() || amount <= 0) {
             throw new BadRequestException("Запрошено вопросов больше, чем есть в базе данных");
         }
         for (int i = 0; i < amount; i++) {

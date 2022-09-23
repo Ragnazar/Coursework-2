@@ -16,8 +16,7 @@ public class ExamController {
 
     @GetMapping(path = "/get/{amount}")
     @ResponseBody
-    public Collection<Question> getQuestions(@PathVariable("amount") String amount) {
-        int number = Integer.parseInt(amount);
-        return service.getQuestions(number);
+    public Collection<Question> getQuestions(@PathVariable("amount") int amount) {
+        return service.getQuestions(amount);
     }
 }
