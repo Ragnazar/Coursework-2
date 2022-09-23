@@ -1,57 +1,59 @@
 package pro.sky.exam.app.services;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 import pro.sky.exam.app.dtos.Question;
 import pro.sky.exam.app.exceptions.BadRequestException;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
+import static pro.sky.exam.app.Constants.*;
 
 @ExtendWith(MockitoExtension.class)
 class ExaminerServiceImplTest {
     @Mock
     private QuestionService questionService;
 
-    private final ExaminerService examinerService;
+    private ExaminerService examinerService;
 
-    ExaminerServiceImplTest(QuestionService questionService, ExaminerService examinerService) {
-        this.questionService = questionService;
-        this.examinerService = examinerService;
-    }
-
-
-    @Test
-    void shouldReturnCollectionOfRandomQuestions() {
-        when(examinerService.getQuestions(3)).thenReturn(new ArrayList<>(List.of(
+    @BeforeEach
+    void init() {
+        examinerService = new ExaminerServiceImpl(questionService);
+        Set<Question> tmp = new HashSet<>(List.of(
                 new Question("question1", "answer1"),
                 new Question("question2", "answer2"),
                 new Question("question3", "answer3")
-        )));
+        ));
+        when(questionService.getAll()).thenReturn(tmp);
+        when(questionService.getRandomQuestion()).thenReturn(new Question("question1", "answer1"));
     }
 
     @Test
-    void shouldReturnCollection() {
-        assertFalse(examinerService.getQuestions(3).isEmpty());
-        assertEquals(examinerService.getQuestions(3).size(), 3);
+    void shouldReturnCollectionWithOneQuestion() {
+        assertEquals(examinerService.getQuestions(ONE),
+                new HashSet<>(Set.of(new Question("question1", "answer1"))));
 
     }
 
     @Test
-    void shouldThrowBadRequestException() {
-        when(examinerService.getQuestions(5))
-                .thenThrow(new BadRequestException("Запрошено вопросов больше, чем есть в базе данных"));
-        Throwable thrown = catchThrowable(() -> examinerService.getQuestions(5));
+    @MockitoSettings(strictness = Strictness.LENIENT)
+    void shouldThrowBadRequestExceptionWhenParamsAreNotAllowed() {
+        Throwable thrown = catchThrowable(() -> examinerService.getQuestions(MINUS_ONE));
         assertThat(thrown).isInstanceOf(BadRequestException.class);
         assertThat(thrown.getMessage()).isNotBlank();
 
+        thrown = catchThrowable(() -> examinerService.getQuestions(Integer.MAX_VALUE));
+        assertThat(thrown).isInstanceOf(BadRequestException.class);
+        assertThat(thrown.getMessage()).isNotBlank();
     }
 
 }
