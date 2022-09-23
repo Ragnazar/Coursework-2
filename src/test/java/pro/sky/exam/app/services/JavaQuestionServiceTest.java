@@ -1,7 +1,6 @@
 package pro.sky.exam.app.services;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import pro.sky.exam.app.dtos.Question;
 import pro.sky.exam.app.exceptions.EmptyQuestionListException;
 import pro.sky.exam.app.exceptions.QuestionAlreadyExistsException;
@@ -12,8 +11,8 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.junit.jupiter.api.Assertions.*;
 import static pro.sky.exam.app.Constants.*;
 
-@SpringBootTest
 class JavaQuestionServiceTest {
+
     private final QuestionService questionService = new JavaQuestionService();
 
     @Test
@@ -75,4 +74,5 @@ class JavaQuestionServiceTest {
         assertThat(thrown).isInstanceOf(EmptyQuestionListException.class);
         assertThat(thrown.getMessage()).isNotBlank();
     }
+
 }

@@ -19,8 +19,13 @@ import static org.mockito.Mockito.when;
 class ExaminerServiceImplTest {
     @Mock
     private QuestionService questionService;
-    @Mock
-    private ExaminerService examinerService = new ExaminerServiceImpl(questionService);
+
+    private final ExaminerService examinerService;
+
+    ExaminerServiceImplTest(QuestionService questionService, ExaminerService examinerService) {
+        this.questionService = questionService;
+        this.examinerService = examinerService;
+    }
 
 
     @Test
@@ -30,24 +35,23 @@ class ExaminerServiceImplTest {
                 new Question("question2", "answer2"),
                 new Question("question3", "answer3")
         )));
-        assertFalse(examinerService.getQuestions(3).isEmpty());
-        assertTrue(examinerService.getQuestions(3).contains(new Question("question1", "answer1")));
-
     }
 
     @Test
-    void shouldReturnEmptyCollection() {
-        when(examinerService.getQuestions(2)).thenReturn(new ArrayList<>());
-        assertTrue(examinerService.getQuestions(2).isEmpty());
+    void shouldReturnCollection() {
+        assertFalse(examinerService.getQuestions(3).isEmpty());
+        assertEquals(examinerService.getQuestions(3).size(), 3);
 
     }
+
     @Test
     void shouldThrowBadRequestException() {
         when(examinerService.getQuestions(5))
                 .thenThrow(new BadRequestException("Запрошено вопросов больше, чем есть в базе данных"));
-        Throwable thrown = catchThrowable(()->examinerService.getQuestions(5));
+        Throwable thrown = catchThrowable(() -> examinerService.getQuestions(5));
         assertThat(thrown).isInstanceOf(BadRequestException.class);
         assertThat(thrown.getMessage()).isNotBlank();
 
     }
+
 }

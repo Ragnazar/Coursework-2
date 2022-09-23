@@ -4,8 +4,9 @@ import org.springframework.stereotype.Service;
 import pro.sky.exam.app.dtos.Question;
 import pro.sky.exam.app.exceptions.BadRequestException;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
@@ -17,12 +18,15 @@ public class ExaminerServiceImpl implements ExaminerService {
 
     @Override
     public Collection<Question> getQuestions(int amount) {
-        Collection<Question> result = new ArrayList<>();
+        int i = 0;
+        Set<Question> result = new HashSet<>();
         if (amount > questionService.getAll().size() || amount <= 0) {
             throw new BadRequestException("Запрошено вопросов больше, чем есть в базе данных");
         }
-        for (int i = 0; i < amount; i++) {
+
+       while (i  < amount) {
             result.add(questionService.getRandomQuestion());
+            i++;
         }
         return result;
     }
