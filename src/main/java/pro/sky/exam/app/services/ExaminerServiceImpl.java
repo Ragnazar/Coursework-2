@@ -18,15 +18,13 @@ public class ExaminerServiceImpl implements ExaminerService {
 
     @Override
     public Collection<Question> getQuestions(int amount) {
-        int i = 0;
         Set<Question> result = new HashSet<>();
         if (amount > questionService.getAll().size() || amount <= 0) {
             throw new BadRequestException("Запрошено вопросов больше, чем есть в базе данных");
         }
 
-       while (i  < amount) {
+        while (result.size() < amount) {
             result.add(questionService.getRandomQuestion());
-            i++;
         }
         return result;
     }

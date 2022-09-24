@@ -7,7 +7,9 @@ import pro.sky.exam.app.exceptions.EmptyQuestionListException;
 import pro.sky.exam.app.exceptions.QuestionAlreadyExistsException;
 import pro.sky.exam.app.exceptions.QuestionNotFoundException;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
@@ -20,11 +22,8 @@ class JavaQuestionServiceTest {
 
     @AfterEach
     void cleanUp() {
-        Collection<Question> tmp = questionService.getAll();
-        Question item = new Question(QUESTION, ANSWER);
-        if (!tmp.isEmpty()) {
-            questionService.remove(item);
-        }
+        List<Question> tmp = new ArrayList<>(questionService.getAll());
+        tmp.stream().filter(Objects::nonNull).forEachOrdered(questionService::remove);
     }
 
     @Test
