@@ -1,13 +1,13 @@
-package pro.sky.exam.app.services;
+package pro.sky.exam.app.service;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import pro.sky.exam.app.dtos.Question;
-import pro.sky.exam.app.dtos.QuestionRepository;
-import pro.sky.exam.app.dtos.QuestionRepositoryImpl;
-import pro.sky.exam.app.exceptions.EmptyQuestionListException;
-import pro.sky.exam.app.exceptions.QuestionAlreadyExistsException;
-import pro.sky.exam.app.exceptions.QuestionNotFoundException;
+import pro.sky.exam.app.dao.Question;
+import pro.sky.exam.app.dao.QuestionRepository;
+import pro.sky.exam.app.dao.QuestionRepositoryImpl;
+import pro.sky.exam.app.exception.EmptyQuestionListException;
+import pro.sky.exam.app.exception.QuestionAlreadyExistsException;
+import pro.sky.exam.app.exception.QuestionNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,9 +1,9 @@
-package pro.sky.exam.app.services;
+package pro.sky.exam.app.service;
 
 import org.springframework.stereotype.Service;
-import pro.sky.exam.app.dtos.Question;
-import pro.sky.exam.app.dtos.QuestionRepository;
-import pro.sky.exam.app.exceptions.EmptyQuestionListException;
+import pro.sky.exam.app.dao.Question;
+import pro.sky.exam.app.dao.QuestionRepository;
+import pro.sky.exam.app.exception.EmptyQuestionListException;
 
 import java.util.*;
 

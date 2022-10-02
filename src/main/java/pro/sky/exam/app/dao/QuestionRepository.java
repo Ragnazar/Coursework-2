@@ -1,4 +1,4 @@
-package pro.sky.exam.app.dtos;
+package pro.sky.exam.app.dao;
 
 import java.util.Collection;
 

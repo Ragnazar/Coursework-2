@@ -1,4 +1,4 @@
-package pro.sky.exam.app.services;
+package pro.sky.exam.app.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,8 +7,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
-import pro.sky.exam.app.dtos.Question;
-import pro.sky.exam.app.exceptions.BadRequestException;
+import pro.sky.exam.app.dao.Question;
+import pro.sky.exam.app.exception.BadRequestException;
 
 import java.util.*;
 

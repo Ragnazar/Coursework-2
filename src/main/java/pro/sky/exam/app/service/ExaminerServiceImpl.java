@@ -1,8 +1,8 @@
-package pro.sky.exam.app.services;
+package pro.sky.exam.app.service;
 
 import org.springframework.stereotype.Service;
-import pro.sky.exam.app.dtos.Question;
-import pro.sky.exam.app.exceptions.BadRequestException;
+import pro.sky.exam.app.dao.Question;
+import pro.sky.exam.app.exception.BadRequestException;
 
 import java.util.Collection;
 import java.util.HashSet;

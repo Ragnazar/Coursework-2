@@ -1,8 +1,8 @@
-package pro.sky.exam.app.controllers;
+package pro.sky.exam.app.controller;
 
 import org.springframework.web.bind.annotation.*;
-import pro.sky.exam.app.dtos.Question;
-import pro.sky.exam.app.services.ExaminerService;
+import pro.sky.exam.app.dao.Question;
+import pro.sky.exam.app.service.ExaminerService;
 
 import java.util.Collection;
 

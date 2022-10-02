@@ -1,6 +1,6 @@
-package pro.sky.exam.app.services;
+package pro.sky.exam.app.service;
 
-import pro.sky.exam.app.dtos.Question;
+import pro.sky.exam.app.dao.Question;
 
 import java.util.Collection;
 

@@ -1,8 +1,8 @@
-package pro.sky.exam.app.dtos;
+package pro.sky.exam.app.dao;
 
 import org.springframework.stereotype.Repository;
-import pro.sky.exam.app.exceptions.QuestionAlreadyExistsException;
-import pro.sky.exam.app.exceptions.QuestionNotFoundException;
+import pro.sky.exam.app.exception.QuestionAlreadyExistsException;
+import pro.sky.exam.app.exception.QuestionNotFoundException;
 
 import java.util.Collection;
 import java.util.HashSet;

@@ -1,11 +1,11 @@
-package pro.sky.exam.app.controllers;
+package pro.sky.exam.app.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pro.sky.exam.app.dtos.Question;
-import pro.sky.exam.app.services.QuestionService;
+import pro.sky.exam.app.dao.Question;
+import pro.sky.exam.app.service.QuestionService;
 
 import java.util.Collection;
 

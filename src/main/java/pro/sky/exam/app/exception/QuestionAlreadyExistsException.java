@@ -1,4 +1,4 @@
-package pro.sky.exam.app.exceptions;
+package pro.sky.exam.app.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
