@@ -2,24 +2,23 @@ package pro.sky.exam.app.services;
 
 import org.springframework.stereotype.Service;
 import pro.sky.exam.app.dtos.Question;
+import pro.sky.exam.app.dtos.QuestionRepository;
 import pro.sky.exam.app.exceptions.EmptyQuestionListException;
-import pro.sky.exam.app.exceptions.QuestionAlreadyExistsException;
-import pro.sky.exam.app.exceptions.QuestionNotFoundException;
 
 import java.util.*;
 
 @Service
 public class JavaQuestionService implements QuestionService {
-    private final Set<Question> questions = new HashSet<>();
+    private final QuestionRepository repository;
     private final Random random = new Random();
+
+    public JavaQuestionService(QuestionRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public Question add(Question question) {
-        if (questions.contains(question)) {
-            throw new QuestionAlreadyExistsException("Вопрос уже есть в списке");
-        }
-        questions.add(question);
-        return question;
+        return repository.add(question);
     }
 
 
@@ -29,16 +28,12 @@ public class JavaQuestionService implements QuestionService {
 
     @Override
     public Question remove(Question question) {
-        if (!questions.contains(question)) {
-            throw new QuestionNotFoundException("Вопрос не найден в списке");
-        }
-        questions.remove(question);
-        return question;
+       return repository.remove(question);
     }
 
     @Override
     public Collection<Question> getAll() {
-        return questions;
+        return repository.getAll();
     }
 
     @Override
