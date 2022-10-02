@@ -2,17 +2,17 @@ package pro.sky.exam.app.service;
 
 import org.springframework.stereotype.Service;
 import pro.sky.exam.app.dao.Question;
-import pro.sky.exam.app.dao.QuestionRepository;
+import pro.sky.exam.app.dao.JavaQuestionRepository;
 import pro.sky.exam.app.exception.EmptyQuestionListException;
 
 import java.util.*;
 
 @Service
 public class JavaQuestionService implements QuestionService {
-    private final QuestionRepository repository;
+    private final JavaQuestionRepository repository;
     private final Random random = new Random();
 
-    public JavaQuestionService(QuestionRepository repository) {
+    public JavaQuestionService(JavaQuestionRepository repository) {
         this.repository = repository;
     }
 

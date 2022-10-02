@@ -7,9 +7,11 @@ import pro.sky.exam.app.exception.QuestionNotFoundException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+
 @Repository
-public class QuestionRepositoryImpl implements QuestionRepository {
+public class MathQuestionRepositoryImpl implements MathQuestionRepository {
     private final Set<Question> questions = new HashSet<>();
+
     @Override
     public Question add(Question question) {
         if (questions.contains(question)) {
@@ -32,5 +34,4 @@ public class QuestionRepositoryImpl implements QuestionRepository {
     public Collection<Question> getAll() {
         return questions;
     }
-
 }

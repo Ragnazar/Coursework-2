@@ -3,8 +3,8 @@ package pro.sky.exam.app.service;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import pro.sky.exam.app.dao.Question;
-import pro.sky.exam.app.dao.QuestionRepository;
-import pro.sky.exam.app.dao.QuestionRepositoryImpl;
+import pro.sky.exam.app.dao.JavaQuestionRepository;
+import pro.sky.exam.app.dao.JavaQuestionRepositoryImpl;
 import pro.sky.exam.app.exception.EmptyQuestionListException;
 import pro.sky.exam.app.exception.QuestionAlreadyExistsException;
 import pro.sky.exam.app.exception.QuestionNotFoundException;
@@ -20,7 +20,7 @@ import static pro.sky.exam.app.Constants.*;
 
 class JavaQuestionServiceTest {
 
-    private final QuestionRepository repository = new QuestionRepositoryImpl();
+    private final JavaQuestionRepository repository = new JavaQuestionRepositoryImpl();
     private final QuestionService questionService = new JavaQuestionService(repository);
 
     @AfterEach
